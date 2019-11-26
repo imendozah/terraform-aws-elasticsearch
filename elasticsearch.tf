@@ -32,6 +32,12 @@ resource "aws_instance" "node" {
   instance_type = each.value.instance_type
   subnet_id = each.value.subnet_id
 
+  ebs_block_device {
+    device_name = "Elasticsearch volume"
+    volume_type = each.value.volume_type
+    volume_size = each.value.volume_size
+  }
+
   # Set attributes that are applicable to all nodes.
   ami = var.ami
   vpc_security_group_ids = concat(var.vpc_security_group_ids, [aws_security_group.node.id])

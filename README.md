@@ -2,7 +2,8 @@
 Requires `terraform` version 0.12.13 or higher. Currently, this setup requires
 you to specify an AMI with Java and Elasticsearch installed. In the provisioning
 phase, some system parameters are configured and Elasticsearch is started
-(see `elasticsearch.tf`).
+(see `elasticsearch.tf`). Also, this setup assumes you want to place the stack
+in an existing VPC.
 
 ### Usage
 The usage is best explained using an example. Say you want to create a two node cluster.
@@ -24,10 +25,14 @@ nodes = {
   node1 = {
     instance_type: "t2.micro"
     subnet_id: "subnet-12345"
+    volume_type: "io1"
+    volume_size: 50
   }
   node2 = {
     instance_type: "t2.micro"
     subnet_id: "subnet-12345"
+    volume_type: "io1"
+    volume_size: 50
   }
 }
 ```

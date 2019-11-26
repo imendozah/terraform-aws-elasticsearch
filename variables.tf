@@ -48,13 +48,17 @@ variable "ami" {
 }
 
 # Mapping of node name => properties
-# Possible properties:
-# - instance_type (required)
-# - subnet_id (required) 
+# Properties:
+# - instance_type
+# - subnet_id
+# - volume_size
+# - volume_type
 variable "nodes" {
   type = map(object({
     instance_type = string
     subnet_id = string
+    volume_size = number
+    volume_type = string
   }))
   description = "An object containing node_name => node_values mappings. Node values are 'instance_type' and 'subnet_id'"
 }
